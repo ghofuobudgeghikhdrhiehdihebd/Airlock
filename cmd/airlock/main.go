@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"github.com/ghofuobudgeghikhdrhiehdihebd/airlock/internal/ui"
+)
 
 func main() {
-	fmt.Println("hello, world!")
+	ui, err := uipkg.Initialize()
+	if err != nil {
+		panic(err)
+	}
+
 }
