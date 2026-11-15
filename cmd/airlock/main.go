@@ -8,7 +8,7 @@ import (
 	"syscall"
 
 	"github.com/ghofuobudgeghikhdrhiehdihebd/airlock/internal/btserial"
-	"github.com/ghofuobudgeghikhdrhiehdihebd/airlock/internal/ui"
+	"github.com/ghofuobudgeghikhdrhiehdihebd/airlock/internal/uipkg"
 )
 
 func main() {

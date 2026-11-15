@@ -1,4 +1,4 @@
-package ui
+package uipkg
 
 type Decision uint8
 
