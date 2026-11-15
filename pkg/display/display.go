@@ -4,6 +4,7 @@ package display
 import (
 	"image"
 	"image/draw"
+	"strings"
 
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/basicfont"
@@ -37,10 +38,16 @@ func New(busName string, opts *ssd1306.Opts) (*Display, error) {
 }
 
 func (d *Display) Print(text string) error {
-	drawer := &font.Drawer{Dst: d.Image, Src: image.White, Face: d.Face,
-		Dot: fixed.P(d.Cursor.X, d.Cursor.Y+13)}
-	drawer.DrawString(text)
-	d.Cursor.X += font.MeasureString(d.Face, text).Ceil()
+	for index, line := range strings.Split(text, "\n") {
+		if index > 0 {
+			d.Cursor.X = 0
+			d.Cursor.Y += 13
+		}
+		drawer := &font.Drawer{Dst: d.Image, Src: image.White, Face: d.Face,
+			Dot: fixed.P(d.Cursor.X, d.Cursor.Y+13)}
+		drawer.DrawString(line)
+		d.Cursor.X += font.MeasureString(d.Face, line).Ceil()
+	}
 	return d.flush()
 }
 
